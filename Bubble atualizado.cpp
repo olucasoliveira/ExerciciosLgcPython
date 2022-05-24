@@ -1,60 +1,54 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#define TAM 10
 
-int numeros[TAM];
+# define TAM 10
 
 int main() {
-	
-	int i, j, k;
+	int numeros[TAM];
+	int i, j, b, aux;
+  clock_t t;
+	double tempo;
 
-//Gerando numeros aleatorios e atribuindo as posicões no vetor 
+//Gerando numeros aleatorios e atribuindo as posicï¿½es no vetor 
 	
-	int gerandoaleatorio(int numeros, TAM);
-
-	gerandoaleatorio(numeros);
-
 	
-//Ordenando os vetores 
-
-    printf("\n\nOrdenando o vetor: \n\n\n");
-    
-	for (k=0; k < TAM ; k++){
-		for (i=0; i<TAM-1 ; i++){
-			if ( numeros[i] > numeros[i+1]){
-				j = numeros [i];
-				numeros[i] = numeros[i+1];
-				numeros[i+1] = j;
-			}	
-		}
-		for (i=0; i < TAM ; i++){
-			printf("%d ", numeros[i]);
-		}
-		printf("\n");
-	}
-	printf("\n\nSequencia ordenada:\n\n");
-	for (i=0; i < TAM ; i++){
-			printf("%d ", numeros[i]);
-	}
-		
-		
+	srand(time(NULL)); //Garantindo a aleatoriedade da rand()
+	printf("\nSequencia aleatoria:\n\n");
 	
-	return 0;
-}
-
-int gerandoaleatorio(int numeros, TAM){
-	//Garantindo a aleatoriedade da rand()
-	int i;
-	srand(time(NULL)); 					
-	
-	printf("\nSequencia de numeros aleatorios: \n\n");
 	for (i=0; i< TAM ; i++){
 		
 		numeros[i] = rand() % 1000 ;
 		printf("%d ", numeros[i]);
+	
 	}
-	
-	return ();
-	
-}
+	printf("\n\n");
+	printf("Ordenando:\n\n");
+
+//Ordenando os vetores
+t= clock();
+ for(j=0; j< TAM; j++){
+		for (i=0; i < TAM - 1; i++){
+			if ( numeros [i] > numeros [i+1]){
+				aux = numeros[i+1];
+				numeros[i+1]= numeros [i];
+				numeros[i]= aux;
+		   }
+    }
+  }
+t= clock()-t;
+tempo= (t/(CLOCKS_PER_SEC/1000));
+
+
+
+
+	printf("\n\nSequencia ordenada:\n\n");
+	for (b=0; b < TAM ; b++){
+			printf("%d ", numeros[b]);
+	} 
+printf("\n\n");
+
+	printf("Tempo: %lf", tempo);
+	return 0;
+} 
+    
